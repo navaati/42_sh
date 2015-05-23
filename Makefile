@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I ./libft
 
 NAME = ft_minishell1
-OBJS = main.o get_next_line.o
+OBJS = main.o get_next_line.o builtins.o program.o
 LIBFT = ./libft/libft.a
 
 all: $(NAME)

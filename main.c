@@ -6,7 +6,7 @@
 /*   By: lgillot- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 00:29:22 by lgillot-          #+#    #+#             */
-/*   Updated: 2015/05/24 01:06:41 by lgillot-         ###   ########.fr       */
+/*   Updated: 2015/05/24 01:40:21 by lgillot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include <unistd.h>
 
 #include <libft.h>
-
 #include "get_next_line.h"
 
-static void prompt()
+#include "ft_shell.h"
+
+static void	prompt(void)
 {
 	char	*cwd;
 
@@ -27,24 +28,42 @@ static void prompt()
 	ft_putstr(" $ ");
 }
 
-static void process_line(char *line)
+static void	process_line(char *line)
 {
-	ft_putendl(line);
+	char **words;
+	char *command;
+	char **args;
+
+	words = ft_strsplit(line, ' ');
+	if (words && words[0])
+	{
+		command = words[0];
+		args = words + 1;
+		if (ft_strequ(command, "cd"))
+			sh_cd(args);
+		else if (ft_strequ(command, "setenv"))
+			sh_setenv(args);
+		else if (ft_strequ(command, "unsetenv"))
+			sh_unsetenv(args);
+		else if (ft_strequ(command, "env"))
+			sh_env(args);
+		else if (ft_strequ(command, "exit"))
+			sh_exit(args);
+		else
+			sh_program(words);
+	}
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	*line;
 
 	(void)argc;
 	(void)argv;
-	prompt();
-	while (get_next_line(0, &line) > 0)
+	while ((prompt(), get_next_line(STDIN, &line)) > 0)
 	{
 		process_line(line);
 		free(line);
-		prompt();
 	}
-
 	return (0);
 }
