@@ -10,6 +10,8 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $+ $(LDFLAGS) -o $@
 
+$(OBJS): ./ft_shell.h
+
 $(LIBFT):
 	$(MAKE) -C ./libft
 
