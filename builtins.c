@@ -6,7 +6,7 @@
 /*   By: lgillot- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 01:42:02 by lgillot-          #+#    #+#             */
-/*   Updated: 2015/05/24 02:01:42 by lgillot-         ###   ########.fr       */
+/*   Updated: 2015/05/24 02:02:20 by lgillot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void sh_env(t_shell_state *st, char *args[])
 
 void sh_exit(t_shell_state *st, char *args[])
 {
-	(void)st;
 	(void)args;
+	st->exit = TRUE;
 }
