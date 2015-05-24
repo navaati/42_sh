@@ -6,7 +6,7 @@
 /*   By: lgillot- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 01:42:02 by lgillot-          #+#    #+#             */
-/*   Updated: 2015/05/24 01:44:54 by lgillot-         ###   ########.fr       */
+/*   Updated: 2015/05/24 02:01:42 by lgillot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,32 @@
 
 #include "ft_shell.h"
 
-void sh_cd(char *args[])
+void sh_cd(t_shell_state *st, char *args[])
 {
+	(void)st;
 	(void)args;
 }
 
-void sh_setenv(char *args[])
+void sh_setenv(t_shell_state *st, char *args[])
 {
+	(void)st;
 	(void)args;
 }
 
-void sh_unsetenv(char *args[])
+void sh_unsetenv(t_shell_state *st, char *args[])
 {
+	(void)st;
 	(void)args;
 }
 
-void sh_env(char *args[])
+void sh_env(t_shell_state *st, char *args[])
 {
+	(void)st;
 	(void)args;
 }
 
-void sh_exit(char *args[])
+void sh_exit(t_shell_state *st, char *args[])
 {
+	(void)st;
 	(void)args;
 }

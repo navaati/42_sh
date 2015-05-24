@@ -6,7 +6,7 @@
 /*   By: lgillot- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 01:43:23 by lgillot-          #+#    #+#             */
-/*   Updated: 2015/05/24 01:45:04 by lgillot-         ###   ########.fr       */
+/*   Updated: 2015/05/24 02:01:46 by lgillot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 #include "ft_shell.h"
 
-void sh_program(char *words[])
+void sh_program(t_shell_state *st, char *words[])
 {
+	(void)st;
 	(void)words;
 }

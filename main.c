@@ -6,7 +6,7 @@
 /*   By: lgillot- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 00:29:22 by lgillot-          #+#    #+#             */
-/*   Updated: 2015/05/24 01:40:21 by lgillot-         ###   ########.fr       */
+/*   Updated: 2015/05/24 02:03:33 by lgillot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	prompt(void)
 	ft_putstr(" $ ");
 }
 
-static void	process_line(char *line)
+static void	process_line(t_shell_state *st, char *line)
 {
 	char **words;
 	char *command;
@@ -40,29 +40,31 @@ static void	process_line(char *line)
 		command = words[0];
 		args = words + 1;
 		if (ft_strequ(command, "cd"))
-			sh_cd(args);
+			sh_cd(st, args);
 		else if (ft_strequ(command, "setenv"))
-			sh_setenv(args);
+			sh_setenv(st, args);
 		else if (ft_strequ(command, "unsetenv"))
-			sh_unsetenv(args);
+			sh_unsetenv(st, args);
 		else if (ft_strequ(command, "env"))
-			sh_env(args);
+			sh_env(st, args);
 		else if (ft_strequ(command, "exit"))
-			sh_exit(args);
+			sh_exit(st, args);
 		else
-			sh_program(words);
+			sh_program(st, words);
 	}
 }
 
 int			main(int argc, char **argv)
 {
-	char	*line;
+	char			*line;
+	t_shell_state	st;
 
 	(void)argc;
 	(void)argv;
-	while ((prompt(), get_next_line(STDIN, &line)) > 0)
+	st.exit = FALSE;
+	while (!st.exit && (prompt(), get_next_line(STDIN, &line)) > 0)
 	{
-		process_line(line);
+		process_line(&st, line);
 		free(line);
 	}
 	return (0);
